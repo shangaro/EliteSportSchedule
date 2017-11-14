@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient,HttpResponse} from '@angular/common/http'
+import { Observable} from 'rxjs/Observable';
+
 
 @Injectable()
 export class HttpService{
@@ -15,5 +17,10 @@ export class HttpService{
             console.log("http for tournaments works :",this.http.get(this.baseUrl + '/tournaments.json'));
 
         });
+    }
+
+    getTournamentsData(tournamentId:string){
+
+        return this.http.get(this.baseUrl +'/tournaments-data/'+tournamentId +'.json');
     }
 }
