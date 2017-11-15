@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { TeamHomePage } from '../team-home/team-home';
 import { HttpService } from '../../app/shared/shared';
 
@@ -25,7 +25,7 @@ export class TeamsPage {
   // ];
   teams:any;
 
-  constructor(public navCtrl: NavController, private navParams: NavParams,private httpService:HttpService) {
+  constructor(public navCtrl: NavController, private navParams: NavParams,private httpService:HttpService,private loadingCtrl:LoadingController) {
     this.teams=[];
     this.tournament=this.navParams.data;
     console.log('**nav params for teams Page',this.navParams.data);
@@ -34,16 +34,26 @@ export class TeamsPage {
 
   ionViewDidLoad() {
     let selectedTournament=this.navParams.data;
-    //subscribing the observable
+    let loader=this.loadingCtrl.create({
+      content:"Getting Teams.."
+    });
+    loader.present().then(()=>{
+       //subscribing the observable
     this.httpService.getTournamentsData(selectedTournament.id).subscribe(data=>{
       this.teams=data.teams;
       console.log('ionViewDidLoad TeamsPage',data.teams);
+      loader.dismiss();
     });
+    });
+   
 
   }
 
   goToTeamHome($event,team){
     this.navCtrl.push(TeamHomePage,team);
+  }
+  goHome(){
+    this.navCtrl.popToRoot();
   }
 
 }

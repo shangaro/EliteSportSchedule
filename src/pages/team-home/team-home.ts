@@ -39,5 +39,6 @@ export class TeamHomePage {
  ionViewDidUnLoad(){
    console.log('## lifecycle ## ionViewDidUnload');
  }
-
 }
+
+

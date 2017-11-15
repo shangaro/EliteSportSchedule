@@ -6,14 +6,21 @@
 -->
 <ion-header>
 
-  <ion-navbar color="dark">
+  <ion-navbar color="primary">
     <ion-title>{{tournament.name}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="goHome()">
+          <ion-icon name="home"></ion-icon>
+        
+      </button>
+    </ion-buttons>
+    
   </ion-navbar>
-  <ion-toolbar color="twitter" >
+  <!-- <ion-toolbar>
     <ion-icon name="clipboard" color="secondary"> &nbsp;TeamRooster</ion-icon>
 
 
-  </ion-toolbar>
+  </ion-toolbar> -->
 
 </ion-header>
 
@@ -21,7 +28,7 @@
 <ion-content>
 
   <ion-list>
-      <button ion-item color="light" *ngFor="let team of teams" (click)="goToTeamHome($event,team)">{{team?.name}}</button>
+      <button ion-item color="twitter" *ngFor="let team of teams" (click)="goToTeamHome($event,team)">{{team?.name}}</button>
   </ion-list>
 
 </ion-content>

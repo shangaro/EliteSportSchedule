@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { TeamsPage } from '../teams/teams';
 import { HttpService } from '../../app/shared/shared';
 
@@ -24,15 +24,22 @@ export class TournamentsPage {
   //   {id:4, name:"YMCA Tournament"}
   // ]
   tournaments:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService:HttpService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService:HttpService,private loadingController:LoadingController) {
   }
 
   ionViewDidLoad() {
 
     console.log('ionViewDidLoad TournamentsPage');
-    this.httpService.getTournaments().then((data)=>{
-      this.tournaments=data;
+    let loader=this.loadingController.create({
+      content:"LOADING..."
     });
+    loader.present().then(()=>{
+      this.httpService.getTournaments().then((data)=>{
+        this.tournaments=data;
+        loader.dismiss();
+      });
+    });
+    
     
 
   }

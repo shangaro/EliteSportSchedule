@@ -4,7 +4,6 @@ import { Observable} from 'rxjs/Observable';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import 'rxjs';
-import { instanceAvailability } from '@ionic-native/core';
 
 
 @Injectable()
