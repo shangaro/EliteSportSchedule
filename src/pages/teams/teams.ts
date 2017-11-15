@@ -35,7 +35,8 @@ export class TeamsPage {
   ionViewDidLoad() {
     let selectedTournament=this.navParams.data;
     let loader=this.loadingCtrl.create({
-      content:"Getting Teams.."
+      content:"Getting Teams..",
+      spinner:"dots"
     });
     loader.present().then(()=>{
        //subscribing the observable
