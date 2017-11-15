@@ -34,4 +34,7 @@ export class HttpService{
 
 
     }
+    getCurrentTournament(){
+        return this.tournament;
+    }
 }
