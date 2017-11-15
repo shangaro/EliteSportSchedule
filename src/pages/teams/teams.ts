@@ -23,17 +23,21 @@ export class TeamsPage {
   //   {id:3, name:"Chelsea"},
   //   {id:4, name:"Everton"}
   // ];
-  teams:any;
+  teams:any=[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private httpService:HttpService) {
+  constructor(public navCtrl: NavController, private navParams: NavParams,private httpService:HttpService) {
     this.tournament=this.navParams.data;
     console.log('**nav params for teams Page',this.navParams.data);
-    
+
   }
 
   ionViewDidLoad() {
-    this.httpService.getTournamentsData(this.tournament.id).then(data=>this.teams=data);
-    console.log('ionViewDidLoad TeamsPage');
+    let selectedTournament=this.navParams.data;
+    this.httpService.getTournamentsData(selectedTournament.id).subscribe(data=>{
+      this.teams=data.teams;
+      console.log('ionViewDidLoad TeamsPage',data.teams);
+    });
+
   }
 
   goToTeamHome($event,team){
