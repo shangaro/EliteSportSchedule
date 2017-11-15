@@ -4,6 +4,7 @@ import { Observable} from 'rxjs/Observable';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import 'rxjs';
+import { instanceAvailability } from '@ionic-native/core';
 
 
 @Injectable()
@@ -23,12 +24,14 @@ export class HttpService{
         });
     }
 
-    getTournamentsData(tournamentId):Observable<any>{
+    getTournamentsData(tournamentId:string):Observable<any>{
 
-        return this.http.get(this.baseUrl +'/tournaments-data/'+tournamentId +'.json').map((response) =>{
-          this.tournament=response;
-
+        let x= this.http.get(this.baseUrl +'/tournaments-data/'+tournamentId +'.json').map((response) =>{
+            return this.tournament=response;
         });
+        console.log((typeof(x)));
+        return x;
+       
 
 
     }

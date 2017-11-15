@@ -23,9 +23,10 @@ export class TeamsPage {
   //   {id:3, name:"Chelsea"},
   //   {id:4, name:"Everton"}
   // ];
-  teams:any=[];
+  teams:any;
 
   constructor(public navCtrl: NavController, private navParams: NavParams,private httpService:HttpService) {
+    this.teams=[];
     this.tournament=this.navParams.data;
     console.log('**nav params for teams Page',this.navParams.data);
 
@@ -33,6 +34,7 @@ export class TeamsPage {
 
   ionViewDidLoad() {
     let selectedTournament=this.navParams.data;
+    //subscribing the observable
     this.httpService.getTournamentsData(selectedTournament.id).subscribe(data=>{
       this.teams=data.teams;
       console.log('ionViewDidLoad TeamsPage',data.teams);

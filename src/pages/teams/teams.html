@@ -21,7 +21,7 @@
 <ion-content>
 
   <ion-list>
-      <button ion-item color="light" *ngFor="let team of teams | async" (click)="goToTeamHome($event,team)">{{team.name}}</button>
+      <button ion-item color="light" *ngFor="let team of teams" (click)="goToTeamHome($event,team)">{{team?.name}}</button>
   </ion-list>
 
 </ion-content>
