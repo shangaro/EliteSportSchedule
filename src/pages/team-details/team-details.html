@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar>
     <ion-title>{{team.name}}</ion-title>
   </ion-navbar>
 
@@ -15,8 +15,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let game of games">
-      {{game.opponent}}
+    <ion-item *ngFor="let game of games" (click)="goToGamePage($event,game)">
+     vs {{game.opponent}}
     </ion-item>
   </ion-list>
 
