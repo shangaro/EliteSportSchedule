@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
-import { TeamHomePage } from '../team-home/team-home';
 import { HttpService } from '../../app/shared/shared';
+import { TeamDetailsPage } from '../team-details/team-details';
+import { TeamHomePage } from '../team-home/team-home';
 
 /**
  * Generated class for the TeamsPage page.
