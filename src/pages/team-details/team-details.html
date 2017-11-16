@@ -15,6 +15,7 @@
 
 <ion-content>
   <ion-list>
+    <ion-list-header>Playing against</ion-list-header>
     <ion-item *ngFor="let game of games" (click)="goToGamePage($event,game)">
      vs {{game.opponent}}
     </ion-item>
