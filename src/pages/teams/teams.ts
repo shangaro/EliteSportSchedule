@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-ang
 import { HttpService } from '../../app/shared/shared';
 import { TeamDetailsPage } from '../team-details/team-details';
 import { TeamHomePage } from '../team-home/team-home';
+import {chain,zipObject} from 'lodash';
 
 /**
  * Generated class for the TeamsPage page.
@@ -18,13 +19,8 @@ import { TeamHomePage } from '../team-home/team-home';
 })
 export class TeamsPage {
   tournament:any;
-  // teams=[
-  //   {id:1, name:"Manchester United"},
-  //   {id:2, name:"LiverPool"},
-  //   {id:3, name:"Chelsea"},
-  //   {id:4, name:"Everton"}
-  // ];
   teams:any;
+  allTeamDivisions:any;
 
   constructor(public navCtrl: NavController, private navParams: NavParams,private httpService:HttpService,private loadingCtrl:LoadingController) {
     this.teams=[];
@@ -43,11 +39,15 @@ export class TeamsPage {
        //subscribing the observable
     this.httpService.getTournamentsData(selectedTournament.id).subscribe(data=>{
       this.teams=data.teams;
-      console.log('ionViewDidLoad TeamsPage',data.teams);
+      console.log('ionViewDidLoad TeamsPage',this.allTeamDivisions);
+      this.allTeamDivisions=chain(this.teams).
+
+
+
       loader.dismiss();
     });
     });
-   
+
 
   }
 
