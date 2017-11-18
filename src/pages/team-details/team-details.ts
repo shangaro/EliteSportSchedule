@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpService } from '../../app/shared/shared';
-import { chain } from 'lodash';
+import { chain, find } from 'lodash';
 
 
 
@@ -19,15 +19,17 @@ import { chain } from 'lodash';
   templateUrl: 'team-details.html',
 })
 export class TeamDetailsPage {
- 
+
   team:any;
   games:any[];
+  teamStanding:any;
   // //how??
   // location:any[];
   private tournamentData:any;
 
   constructor(public navCtrl: NavController, private navParams: NavParams,private httpService:HttpService) {
     this.team=this.navParams.data;
+    this.teamStanding={};
   }
 
   ionViewDidLoad() {
@@ -52,13 +54,14 @@ export class TeamDetailsPage {
         };
     })
     .value();
-    
+    // second parameter is a filter criteria
+    this.teamStanding=find(this.tournamentData.standings,{'teamId':this.team.id});
     console.log('ionViewDidLoad TeamDetailsPage');
-    
+
   }
 
   getScoreDisplay(isTeam1,team1Score,team2Score) {
-    
+
     // typescript already handles the condition of !=null or bool
     if(team1Score && team2Score){
         var teamScore=(isTeam1 ? team1Score : team2Score);
@@ -69,7 +72,7 @@ export class TeamDetailsPage {
     else{
       return "";
     }
-    
+
   }
-  
+
 }

@@ -40,14 +40,14 @@ export class TeamsPage {
     this.httpService.getTournamentsData(selectedTournament.id).subscribe(data=>{
       this.teams=data.teams;
       console.log('ionViewDidLoad TeamsPage',this.allTeamDivisions);
-      this.allTeamDivisions=chain(this.teams).
-
-
-
+      this.allTeamDivisions=chain(this.teams).groupBy('division')
+      .toPairs().map(item=>zipObject(['divisionName','divisionTeams'],item))
+      .value();
       loader.dismiss();
+      this.teams=this.allTeamDivisions;
+      console.log('division teams', this.teams);
     });
     });
-
 
   }
 

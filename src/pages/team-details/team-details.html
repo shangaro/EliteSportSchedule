@@ -14,10 +14,33 @@
 
 
 <ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-row>
+        <ion-col>
+          <h2>Record:{{teamStanding.losses}}</h2>
+          <p>Coach: {{team.coach}}</p>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-card-header>
+  </ion-card>
   <ion-list>
     <ion-list-header>Playing against</ion-list-header>
     <ion-item *ngFor="let game of games" (click)="goToGamePage($event,game)">
-     vs {{game.opponent}}
+     <ion-row>
+       <ion-col>
+         <p>{{game.time | date: 'M/d/yy'}}</p>
+         <p>{{game.time | date:'shortTime'}}</p>
+       </ion-col>
+       <ion-col>
+         <p>{{game.homeAway}} {{game.opponent}}</p>
+         <p>{{game.location}}</p>
+       </ion-col>
+       <ion-col>
+         <h4>{{game.scoreDisplay}}</h4>
+       </ion-col>
+     </ion-row>
     </ion-item>
   </ion-list>
 

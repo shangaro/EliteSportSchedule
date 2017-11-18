@@ -8,25 +8,37 @@
   <ion-toolbar color="secondary">
     <ion-title>Team Rooster</ion-title>
   </ion-toolbar>
-  
+
 </ion-header>
 
 <ion-content>
-  <ion-buttons>
-    
-        <button ion-button medium (click)="goToTournaments()">Find a Tournament </button>
-        <button ion-button medium (click)="goToTournaments()">Find a Tournament </button>
-        <button ion-button medium (click)="goToTournaments()">Find a Tournament </button>
-   
-  </ion-buttons>
-  <ion-list>
-    <ion-list-header>Followed Teams</ion-list-header>
-    <button ion-item *ngFor="let item of favourites">
-      <ion-icon name="star"></ion-icon>
-      {{item.team.name}}
-      <p>{{item.tournamentName}}</p>
-    </button>
-  </ion-list>
+  <ion-card  *ngIf="!favourites">
+    <ion-card-header>No Teams Followed</ion-card-header>
+    <ion-card-content>
+      <p>You have not followed any teams</p>
+      <button ion-button  block round  (click)="goToTournaments()">Find a Tournament </button>
+    </ion-card-content>
 
-  <!-- <button ion-button secondary (click)="goToTournaments()">Find a Tournament </button> -->
+  </ion-card>
+
+  <ion-card *ngIf="favourites">
+    <ion-card-header>Followed Teams</ion-card-header>
+    <ion-card-content>
+      <ion-list>
+          <button ion-item *ngFor="let item of favourites">
+              <ion-icon name="star" color="ridinghood"></ion-icon>
+              {{item.team.name}}
+              <p>{{item.tournamentName}}</p>
+          </button>
+      </ion-list>
+
+      <ion-buttons>
+          <button ion-button  block round  (click)="goToTournaments()">
+            <ion-icon name="search"></ion-icon>&nbsp;Find a Tournament </button>
+      </ion-buttons>
+    </ion-card-content>
+  </ion-card>
+
+
+
 </ion-content>

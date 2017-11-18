@@ -11,10 +11,10 @@
     <ion-buttons end>
       <button ion-button (click)="goHome()">
           <ion-icon name="home"></ion-icon>
-        
+
       </button>
     </ion-buttons>
-    
+
   </ion-navbar>
   <!-- <ion-toolbar>
     <ion-icon name="clipboard" color="secondary"> &nbsp;TeamRooster</ion-icon>
@@ -25,10 +25,14 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content padding>
+  <ion-item-group *ngFor="let division of teams">
+    <ion-item-divider color="ridinghood">{{division.divisionName}}</ion-item-divider>
+    <button ion-item *ngFor="let team of division.divisionTeams" (click)="goToTeamHome($event,team)">
+      {{team.name}}
+    </button>
 
-  <ion-list>
-      <button ion-item color="light" *ngFor="let team of teams" (click)="goToTeamHome($event,team)">{{team?.name}}</button>
-  </ion-list>
+  </ion-item-group>
+
 
 </ion-content>
