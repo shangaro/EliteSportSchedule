@@ -21,8 +21,14 @@
           <h2>Record:{{teamStanding.losses}}</h2>
           <p>Coach: {{team.coach}}</p>
         </ion-col>
-        <ion-col></ion-col>
+        <ion-col>
+          <!-- Placeholder -->
+        </ion-col>
       </ion-row>
+      <ion-item>
+        <ion-label>DateFilter:</ion-label>
+        <ion-datetime displayFormat="M/D/YYYY" pickerFormat="M/D/YYYY" [(ngModel)]="dateFilter"></ion-datetime>
+      </ion-item>
     </ion-card-header>
   </ion-card>
   <ion-list>

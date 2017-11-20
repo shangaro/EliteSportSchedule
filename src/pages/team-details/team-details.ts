@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpService } from '../../app/shared/shared';
 import { chain, find } from 'lodash';
+import { GamePage } from '../game/game';
 
 
 
@@ -23,6 +24,7 @@ export class TeamDetailsPage {
   team:any;
   games:any[];
   teamStanding:any;
+  dateFilter: string;
   // //how??
   // location:any[];
   private tournamentData:any;
@@ -73,6 +75,9 @@ export class TeamDetailsPage {
       return "";
     }
 
+  }
+  goToGamePage($event,game){
+    this.navCtrl.push(GamePage,game);
   }
 
 }
