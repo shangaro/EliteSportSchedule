@@ -28,10 +28,12 @@ export class TeamDetailsPage {
   // //how??
   // location:any[];
   private tournamentData:any;
+  useDateFilter:boolean;
 
   constructor(public navCtrl: NavController, private navParams: NavParams,private httpService:HttpService) {
     this.team=this.navParams.data;
     this.teamStanding={};
+    this.useDateFilter=false;
   }
 
   ionViewDidLoad() {
@@ -78,6 +80,13 @@ export class TeamDetailsPage {
   }
   goToGamePage($event,game){
     this.navCtrl.push(GamePage,game);
+  }
+  DateFiltering(){
+    if(this.useDateFilter==true)
+    {
+      return this.games.filter(x=>x.time==this.dateFilter).values;
+    }
+    return this.games;
   }
 
 }

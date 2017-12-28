@@ -27,7 +27,9 @@
       </ion-row>
       <ion-item>
         <ion-label>DateFilter:</ion-label>
-        <ion-datetime displayFormat="M/D/YYYY" pickerFormat="M/D/YYYY" [(ngModel)]="dateFilter"></ion-datetime>
+        <ionic-toggle></ionic-toggle>
+        <ion-datetime displayFormat="M/D/YYYY" pickerFormat="M/D/YYYY" [(ngModel)]="dateFilter"
+        [disabled]=useDateFilter [(ngModel)]="DateFiltering()"></ion-datetime>
       </ion-item>
     </ion-card-header>
   </ion-card>
