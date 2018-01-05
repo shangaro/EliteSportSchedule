@@ -21,15 +21,20 @@
           <h2>Record:{{teamStanding.losses}}</h2>
           <p>Coach: {{team.coach}}</p>
         </ion-col>
-        <ion-col>
-          <!-- Placeholder -->
+        <ion-col end>
+          <button outline (click)="toggleFollow()" *ngIf=!isFollowing>
+            <ion-icon name="star"></ion-icon>Add to Favourite</button>
         </ion-col>
+        <ion-col end>
+            <button outline (click)="toggleFollow()" *ngIf=isFollowing>
+              <ion-icon name="star"></ion-icon>Added to Favourite</button>
+          </ion-col>
       </ion-row>
       <ion-item>
         <ion-label>DateFilter:</ion-label>
-        <ionic-toggle></ionic-toggle>
+        <ion-toggle [(ngModel)]="useDateFilter"(ionChange)="dateChanged()"></ion-toggle>
         <ion-datetime displayFormat="M/D/YYYY" pickerFormat="M/D/YYYY" [(ngModel)]="dateFilter"
-        [disabled]=useDateFilter [(ngModel)]="DateFiltering()"></ion-datetime>
+        (ionChange)="dateChanged()"[disabled]="!useDateFilter"></ion-datetime>
       </ion-item>
     </ion-card-header>
   </ion-card>
@@ -37,16 +42,17 @@
     <ion-list-header>Playing against</ion-list-header>
     <ion-item *ngFor="let game of games" (click)="goToGamePage($event,game)">
      <ion-row>
-       <ion-col>
+       <ion-col text-left width-20>
          <p>{{game.time | date: 'M/d/yy'}}</p>
          <p>{{game.time | date:'shortTime'}}</p>
        </ion-col>
-       <ion-col>
+       <ion-col text-center width-60>
          <p>{{game.homeAway}} {{game.opponent}}</p>
          <p>{{game.location}}</p>
        </ion-col>
-       <ion-col>
+       <ion-col text-end width-20>
          <h4>{{game.scoreDisplay}}</h4>
+         <ion-badge color='getWinColor(game)'>{{getScoreWorL(game)}}</ion-badge>
        </ion-col>
      </ion-row>
     </ion-item>

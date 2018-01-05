@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,ToastController } from 'ionic-angular';
 import { HttpService } from '../../app/shared/shared';
-import { chain, find } from 'lodash';
+import * as _ from 'lodash';
 import { GamePage } from '../game/game';
+import * as moment from 'moment';
+import {Utils} from '../../app/shared/Utils';
 
 
 
@@ -25,15 +27,19 @@ export class TeamDetailsPage {
   games:any[];
   teamStanding:any;
   dateFilter: string;
+  allGames:any[];
   // //how??
   // location:any[];
   private tournamentData:any;
   useDateFilter:boolean;
+  isFollowing:boolean;
 
-  constructor(public navCtrl: NavController, private navParams: NavParams,private httpService:HttpService) {
+  constructor(public navCtrl: NavController, private navParams: NavParams,private httpService:HttpService,private alertCtrl:AlertController,
+    private toastCtrl:ToastController,private Utils:Utils) {
     this.team=this.navParams.data;
     this.teamStanding={};
     this.useDateFilter=false;
+    this.isFollowing=false;
   }
 
   ionViewDidLoad() {
@@ -41,7 +47,7 @@ export class TeamDetailsPage {
     this.tournamentData=this.httpService.getCurrentTournament();
     var games= this.tournamentData.games;
     //Note: chain is an alternative to linq expressions in nodejs
-    this.games = chain(this.tournamentData.games)
+    this.games = _.chain(this.tournamentData.games)
     .filter(g => this.team.id===g.team1Id || this.team.id === g.team2Id)
     .map(g => {
         let isTeam1 = (g.team1Id === this.team.id);
@@ -58,8 +64,9 @@ export class TeamDetailsPage {
         };
     })
     .value();
+    this.allGames=this.games;
     // second parameter is a filter criteria
-    this.teamStanding=find(this.tournamentData.standings,{'teamId':this.team.id});
+    this.teamStanding=_.find(this.tournamentData.standings,{'teamId':this.team.id});
     console.log('ionViewDidLoad TeamDetailsPage');
 
   }
@@ -81,12 +88,50 @@ export class TeamDetailsPage {
   goToGamePage($event,game){
     this.navCtrl.push(GamePage,game);
   }
-  DateFiltering(){
-    if(this.useDateFilter==true)
-    {
-      return this.games.filter(x=>x.time==this.dateFilter).values;
+  dateChanged()
+  {
+    if(this.useDateFilter){
+      this.games=_.filter(this.allGames,g=>moment(g.time).isSame(this.dateFilter,'day'));
+
+    }else{
+      this.games=this.allGames;
     }
-    return this.games;
+
+  }
+  getScoreWorL(game)
+  {
+    return game.scoreDisplay ? game.scoreDisplay[0]:'';
+  }
+  getWinColor(game){
+    return (game.scoreDisplay.indexOf('W:')==0) ?"badge-primary":"badge-danger";
   }
 
+  //unfollow and follow favourite teams
+  toggleFollow()
+  {
+    if(this.isFollowing){
+      let confirm=this.alertCtrl.create({
+        title:'Unfollow?',
+        message:'Are you sure you want to unfollow?',
+        buttons:[{
+          text:'Yes',
+          handler:() =>{
+            this.isFollowing=false;
+            //TODO: persist data;
+            this.Utils.MakeToast('You have unfollowed the team','bottom',2000);
+
+          }
+        },
+          {
+            text:'No'
+          }
+        ]
+      });
+      confirm.present();
+    }
+    else{
+      this.isFollowing=true;
+    }
+
+  }
 }

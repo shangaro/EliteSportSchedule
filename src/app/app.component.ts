@@ -5,10 +5,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {HttpClient} from '@angular/common/http';
 import { HomePage } from '../pages/home/home';
 import {HttpService} from '../app/shared/shared';
+import { Utils } from './shared/Utils';
 
 @Component({
   templateUrl: 'app.html',
-  providers:[HttpClient,HttpService]
+  providers:[HttpClient,HttpService,Utils]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -32,5 +33,5 @@ export class MyApp {
     });
   }
 
- 
+
 }
