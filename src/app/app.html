@@ -7,8 +7,13 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+      <ion-list-header>Navigate</ion-list-header>
+      <button menuClose ion-item (click)="goHome()">Home</button>
+      <button menuClose ion-item (click)="goToTournament()">Find a tournament</button>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>Favourites</ion-list-header>
+      <button menuClose ion-item *ngFor="let fav of favouriteTeams" (click)="goToTeam(fav)">
       </button>
     </ion-list>
   </ion-content>

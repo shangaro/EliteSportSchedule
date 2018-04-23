@@ -18,9 +18,10 @@
   </ion-navbar>
   <!-- <ion-toolbar>
     <ion-icon name="clipboard" color="secondary"> &nbsp;TeamRooster</ion-icon>
-
-
   </ion-toolbar> -->
+  <ion-toolbar>
+    <ion-searchbar placeholder="Search"[(ngModel)]="queryText" (ionInput)="updateTeams()"></ion-searchbar>
+  </ion-toolbar>
 
 </ion-header>
 

@@ -9,15 +9,11 @@ import { TournamentsPage } from '../tournaments/tournaments';
 export class HomePage {
   favourites=[
     {
-      team:{ id:6182 , name: 'Manchester United', coach:'Giovani'},
+      team:{ id:7970 , name: "MADE Elite", coach:'Giovani'},
       tournamentId:'12345678',
-      tournamentName:'Barclays Premier League'
+      tournamentName:"Cager Classic"
     },
-    {
-      team:{ id:6184 , name: 'Liver Pool', coach:'Gerrard'},
-      tournamentId:'123456789',
-      tournamentName:'English Premiere League'
-    }
+
   ];
 
   constructor(public navCtrl: NavController) {
@@ -27,5 +23,7 @@ export class HomePage {
   goToTournaments(){
     this.navCtrl.push(TournamentsPage);
   }
+
+
 
 }

@@ -12,7 +12,11 @@ import { TeamHomePage } from '../pages/team-home/team-home';
 import { TeamDetailsPage } from '../pages/team-details/team-details';
 import { StandingsPage } from '../pages/standings/standings';
 import {HttpClientModule} from '@angular/common/http';
-import { HttpService } from './shared/shared';
+import { HttpService, cacheService } from './shared/shared';
+import { Utils } from './shared/Utils';
+import { Storage } from '@ionic/storage/dist/storage';
+import { IonicStorageModule } from '@ionic/storage';
+import { GamePage } from '../pages/game/game';
 
 
 @NgModule({
@@ -24,16 +28,18 @@ import { HttpService } from './shared/shared';
     TeamHomePage,
     TeamDetailsPage,
     StandingsPage,
-   
+    GamePage
 
 
 
-    
+
+
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,18 +50,21 @@ import { HttpService } from './shared/shared';
     TeamHomePage,
     TeamDetailsPage,
     StandingsPage,
-    
-    
+    GamePage
+
+
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HttpService
-  
-   
-   
-    
+    HttpService,
+    Utils,
+    cacheService
+
+
+
+
 
   ]
 })

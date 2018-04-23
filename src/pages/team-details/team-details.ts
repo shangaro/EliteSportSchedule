@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController,ToastController } from 'ionic-angular';
-import { HttpService } from '../../app/shared/shared';
+import { HttpService, cacheService } from '../../app/shared/shared';
 import * as _ from 'lodash';
 import { GamePage } from '../game/game';
 import * as moment from 'moment';
 import {Utils} from '../../app/shared/Utils';
+import {TeamHomePage} from '../team-home/team-home';
+import { Storage} from '@ionic/storage';
 
 
 
@@ -35,7 +37,7 @@ export class TeamDetailsPage {
   isFollowing:boolean;
 
   constructor(public navCtrl: NavController, private navParams: NavParams,private httpService:HttpService,private alertCtrl:AlertController,
-    private toastCtrl:ToastController,private Utils:Utils) {
+    private toastCtrl:ToastController,private Utils:Utils,private cache:cacheService) {
     this.team=this.navParams.data;
     this.teamStanding={};
     this.useDateFilter=false;
@@ -51,11 +53,15 @@ export class TeamDetailsPage {
     .filter(g => this.team.id===g.team1Id || this.team.id === g.team2Id)
     .map(g => {
         let isTeam1 = (g.team1Id === this.team.id);
+        let team= isTeam1 ? g.team1 :g.team2;
         let opponentName = isTeam1 ? g.team2 : g.team1;
         let scoreDisplay = this.getScoreDisplay(isTeam1, g.team1Score, g.team2Score);
         return {
             gameId: g.id,
+            teamName:team,
             opponent: opponentName,
+            teamScore:isTeam1?g.team1Score:g.team2Score,
+            opponentScore:isTeam1?g.team2Score:g.team1Score,
             time: Date.parse(g.time),
             location: g.location,
             locationUrl: g.locationUrl,
@@ -68,6 +74,7 @@ export class TeamDetailsPage {
     // second parameter is a filter criteria
     this.teamStanding=_.find(this.tournamentData.standings,{'teamId':this.team.id});
     console.log('ionViewDidLoad TeamDetailsPage');
+    this.cache.isfavouriteTeam(this.team.id).then(value=>this.isFollowing=value);
 
   }
 
@@ -86,7 +93,8 @@ export class TeamDetailsPage {
 
   }
   goToGamePage($event,game){
-    this.navCtrl.push(GamePage,game);
+    this.navCtrl.parent.parent.push(GamePage,game);
+    console.log("game object",game);
   }
   dateChanged()
   {
@@ -118,7 +126,8 @@ export class TeamDetailsPage {
           handler:() =>{
             this.isFollowing=false;
             //TODO: persist data;
-            this.Utils.MakeToast('You have unfollowed the team','bottom',2000);
+            this.cache.unfavouriteTeam(this.team);
+            this.Utils.MakeToast('You have unfollowed the team','middle',2000);
 
           }
         },
@@ -131,7 +140,15 @@ export class TeamDetailsPage {
     }
     else{
       this.isFollowing=true;
+      this.cache.favouriteTeam(this.team,this.tournamentData.tournament.id,this.tournamentData.tournament.name);
     }
 
+  }
+
+  refreshAll(refresher){
+    this.httpService.refreshCurrentTournament().subscribe(()=>{
+      refresher.complete();
+      this.ionViewDidLoad();
+    });
   }
 }

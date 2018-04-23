@@ -4,6 +4,7 @@ import { HttpService } from '../../app/shared/shared';
 import { TeamDetailsPage } from '../team-details/team-details';
 import { TeamHomePage } from '../team-home/team-home';
 import {chain,zipObject} from 'lodash';
+import _ from 'lodash';
 
 /**
  * Generated class for the TeamsPage page.
@@ -21,6 +22,7 @@ export class TeamsPage {
   tournament:any;
   teams:any;
   allTeamDivisions:any;
+  queryText:string;
 
   constructor(public navCtrl: NavController, private navParams: NavParams,private httpService:HttpService,private loadingCtrl:LoadingController) {
     this.teams=[];
@@ -54,8 +56,22 @@ export class TeamsPage {
   goToTeamHome($event,team){
     this.navCtrl.push(TeamHomePage,team);
   }
+
   goHome(){
     this.navCtrl.popToRoot();
+  }
+
+  //search bar function
+  updateTeams(){
+    let queryTextLower=this.queryText.toLowerCase();
+    let filteredTeams=[];
+    _.forEach(this.allTeamDivisions,td => {
+      let teams=_.filter(td.divisionTeams, t=>(<any>t).name.toLowerCase().includes(queryTextLower));
+      if(teams.length){
+        filteredTeams.push({divisionName:td.divisionName,divisionTeams:teams});
+      }
+    });
+    this.teams=filteredTeams;
   }
 
 }

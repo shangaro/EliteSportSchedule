@@ -14,6 +14,11 @@
 
 
 <ion-content>
+  <ion-refresher (ionRefresh)="refreshAll($event)">
+    <ion-refresher-content>
+
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-card>
     <ion-card-header>
       <ion-row>
@@ -27,7 +32,7 @@
         </ion-col>
         <ion-col end>
             <button outline (click)="toggleFollow()" *ngIf=isFollowing>
-              <ion-icon name="star"></ion-icon>Added to Favourite</button>
+              <ion-icon name="star"></ion-icon></button>
           </ion-col>
       </ion-row>
       <ion-item>
