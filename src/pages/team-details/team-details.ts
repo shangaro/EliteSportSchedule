@@ -64,7 +64,7 @@ export class TeamDetailsPage {
             opponentScore:isTeam1?g.team2Score:g.team1Score,
             time: Date.parse(g.time),
             location: g.location,
-            locationUrl: g.locationUrl,
+            locationId: g.locationId,
             scoreDisplay: scoreDisplay,
             homeAway: (isTeam1 ? "vs." : "at")
         };
