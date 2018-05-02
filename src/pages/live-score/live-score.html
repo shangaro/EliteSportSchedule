@@ -1,0 +1,53 @@
+<!--
+  Generated template for the LiveScorePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Live Scores</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+        <ion-item color="dark" *ngFor="let score of scores">
+          <ion-card color="split" full>
+            <ion-card-header>
+
+            </ion-card-header>
+            <ion-card-content>
+                <ion-row text-center>
+                    <ion-col col-6 text-center class="divider-col"><h4>Home</h4></ion-col>
+                    <ion-col col-6 text-center><h4>Away</h4></ion-col>
+                  </ion-row>
+                  <ion-row text-center>
+                    <ion-col col-6 text-center class="divider-col">
+                      <h4>{{score.home_name}}</h4></ion-col>
+                    <ion-col col-6 text-center>
+                      <h4>{{score.away_name}}</h4></ion-col>
+                  </ion-row>
+                  <ion-row baseline class="top-bottom-border">
+                    <ion-col text-center>
+                      <h1 ion-text [color]="IsWinner(score.score)">{{score.score[0]}}</h1></ion-col>
+                    <ion-col col-6 text-center><h5>Score</h5></ion-col>
+                    <ion-col text-center>
+                      <h1 ion-text [color]="IsWinner(score.score)">
+                          {{score.score[4]}}
+                      </h1></ion-col>
+                  </ion-row>
+                  <ion-row text-center>
+                    <ion-col><h5>Status : {{score.status}}</h5></ion-col>
+                    <ion-col><h5>Time : {{score.time}}</h5></ion-col>
+                  </ion-row>
+            </ion-card-content>
+          </ion-card>
+
+        </ion-item>
+      </ion-list>
+
+</ion-content>

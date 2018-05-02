@@ -9,6 +9,7 @@ import 'rxjs';
 @Injectable()
 export class HttpService{
     private readonly baseUrl='https://elite-schedule-app-a2423.firebaseio.com';
+    private readonly soccerBaseUrl='https://soccerdata-7d566.firebaseio.com';
     tournament:any={};
 
     private tournamentData:any={};
@@ -50,5 +51,12 @@ export class HttpService{
 
     refreshCurrentTournament(){
       return this.getTournamentsData(this.tournament.tournament.id,true);
+    }
+
+    getLiveScoreUpdates(){
+     console.log("**about to make HTTP call, just return the data");
+     return new Promise(resolve=>{
+      this.http.get( this.soccerBaseUrl +'/data/match/data/match.json').subscribe(res=>resolve(res));
+      });
     }
 }

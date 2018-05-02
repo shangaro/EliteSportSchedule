@@ -18,6 +18,7 @@ import { Storage } from '@ionic/storage/dist/storage';
 import { IonicStorageModule } from '@ionic/storage';
 import { GamePage } from '../pages/game/game';
 import { MapPage } from '../pages/map/map';
+import { LiveScorePage } from '../pages/live-score/live-score';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { MapPage } from '../pages/map/map';
     TeamDetailsPage,
     StandingsPage,
     GamePage,
-    MapPage
+    MapPage,
+    LiveScorePage
 
 
 
@@ -54,7 +56,8 @@ import { MapPage } from '../pages/map/map';
     TeamDetailsPage,
     StandingsPage,
     GamePage,
-    MapPage
+    MapPage,
+    LiveScorePage
 
 
   ],

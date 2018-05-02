@@ -8,6 +8,7 @@ import {HttpService,cacheService} from '../app/shared/shared';
 import { Utils } from './shared/Utils';
 import { TournamentsPage } from '../pages/tournaments/tournaments';
 import { TeamHomePage } from '../pages/team-home/team-home';
+import { LiveScorePage } from '../pages/live-score/live-score';
 
 @Component({
   templateUrl: 'app.html',
@@ -43,9 +44,7 @@ export class MyApp {
   goToTournament(){
     this.nav.push(TournamentsPage);
   }
-  goToTeamHome(){
-   this.nav.push(TeamHomePage);
-  }
+
   refreshFavourites(){
     this.favouriteTeams=this.cache.getAllfavourites();
   }
@@ -57,6 +56,11 @@ export class MyApp {
     });
     loader.present();
     this.httpService.getTournamentsData(favourite.tournamentId).subscribe(data=>this.nav.push(TeamHomePage,data))
+  }
+
+  //soccer live score page
+  goToLiveScores(){
+    this.nav.push(LiveScorePage);
   }
 
 
