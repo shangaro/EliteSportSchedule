@@ -4,12 +4,14 @@ import { Observable} from 'rxjs/Observable';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import 'rxjs';
+import { APIkey } from './shared';
 
 
 @Injectable()
 export class HttpService{
     private readonly baseUrl='https://elite-schedule-app-a2423.firebaseio.com';
     private readonly soccerBaseUrl='https://soccerdata-7d566.firebaseio.com';
+    private readonly eSportsBaseUrl='https://api.pandascore.co';
     tournament:any={};
 
     private tournamentData:any={};
@@ -58,5 +60,36 @@ export class HttpService{
      return new Promise(resolve=>{
       this.http.get( this.soccerBaseUrl +'/data/match/data/match.json').subscribe(res=>resolve(res));
       });
+    }
+  // esports
+    getVideoGames(){
+        console.log("getting video games by http call");
+        return new Promise(resolve =>{
+            this.http.get(this.eSportsBaseUrl +'/videogames'+'?token='+APIkey.eSportsApiKey).subscribe(res=>resolve(res));
+        });
+    }
+    // esports
+    getTournamentsFromSerie(serieId:number):Promise<any>{
+        return new Promise(resolve =>{
+            this.http.get(this.eSportsBaseUrl+'/series/'+'/'+serieId+'/'+'tournaments'+'?token='+APIkey.eSportsApiKey).subscribe(res=>resolve(res));
+
+        });
+    }
+    // esports
+    getMatchesFromTourney(tourneyId:number):Promise<any>{
+        return new Promise(resolve =>{
+            this.http.get(this.eSportsBaseUrl + '/tournaments'+'/'+tourneyId +'/'+'/matches' +'?token='+APIkey.eSportsApiKey)
+                .subscribe(res =>resolve(res));
+                
+        });
+    }
+
+    //esports
+    getTeamsFromTourney(tourneyId:number):Promise<any>{
+        return new Promise(resolve =>{
+            this.http.get(this.eSportsBaseUrl + '/tournaments'+'/'+tourneyId +'/'+'/teams' +'?token='+APIkey.eSportsApiKey)
+                .subscribe(res =>resolve(res));
+                
+        });
     }
 }

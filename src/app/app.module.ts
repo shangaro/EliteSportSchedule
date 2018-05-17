@@ -19,6 +19,10 @@ import { IonicStorageModule } from '@ionic/storage';
 import { GamePage } from '../pages/game/game';
 import { MapPage } from '../pages/map/map';
 import { LiveScorePage } from '../pages/live-score/live-score';
+import { ESportsPage } from '../pages/e-sports/e-sports';
+import { VideoGamePage } from '../pages/video-game/video-game';
+import { SeriesPage } from '../pages/series/series';
+import { TourneyPage } from '../pages/tourney/tourney';
 
 
 @NgModule({
@@ -32,7 +36,12 @@ import { LiveScorePage } from '../pages/live-score/live-score';
     StandingsPage,
     GamePage,
     MapPage,
-    LiveScorePage
+    LiveScorePage,
+    ESportsPage,
+    VideoGamePage,
+    SeriesPage,
+    TourneyPage
+    
 
 
 
@@ -57,7 +66,12 @@ import { LiveScorePage } from '../pages/live-score/live-score';
     StandingsPage,
     GamePage,
     MapPage,
-    LiveScorePage
+    LiveScorePage,
+    ESportsPage,
+    VideoGamePage,
+    SeriesPage,
+    TourneyPage
+    
 
 
   ],

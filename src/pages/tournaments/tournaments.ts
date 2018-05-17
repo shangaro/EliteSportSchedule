@@ -17,12 +17,7 @@ import { HttpService } from '../../app/shared/shared';
   templateUrl: 'tournaments.html',
 })
 export class TournamentsPage {
-  // tournaments=[
-  //   {id:1,name:"Sunday Premier League"},
-  //   {id:2, name:"Sunday Casual League"},
-  //   {id:3, name:"HC Strike Hard"},
-  //   {id:4, name:"YMCA Tournament"}
-  // ]
+ 
   tournaments:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService:HttpService,private loadingController:LoadingController) {
   }

@@ -19,21 +19,28 @@
   <!-- <ion-toolbar>
     <ion-icon name="clipboard" color="secondary"> &nbsp;TeamRooster</ion-icon>
   </ion-toolbar> -->
-  <ion-toolbar>
+  <!-- <ion-toolbar>
     <ion-searchbar placeholder="Search"[(ngModel)]="queryText" (ionInput)="updateTeams()"></ion-searchbar>
-  </ion-toolbar>
+  </ion-toolbar> -->
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-item-group *ngFor="let division of teams">
+  <!-- <ion-item-group *ngFor="let division of teams">
     <ion-item-divider color="ridinghood">{{division.divisionName}}</ion-item-divider>
     <button ion-item *ngFor="let team of division.divisionTeams" (click)="goToTeamHome($event,team)">
       {{team.name}}
     </button>
 
-  </ion-item-group>
-
+  </ion-item-group> -->
+  <ion-list [virtualScroll]="teams" [approxItemHeight]="'132px'">
+    <ion-list-header>TEAMS</ion-list-header>
+    <button ion-item *virtualItem="let team">
+      <ion-thumbnail item-start>
+        <img width="80" height="80" [src]="team.image_url">
+      </ion-thumbnail>
+      {{team.name}}</button>
+  </ion-list>
 
 </ion-content>

@@ -9,10 +9,11 @@ import { Utils } from './shared/Utils';
 import { TournamentsPage } from '../pages/tournaments/tournaments';
 import { TeamHomePage } from '../pages/team-home/team-home';
 import { LiveScorePage } from '../pages/live-score/live-score';
+import { ESportsPage } from '../pages/e-sports/e-sports';
 
 @Component({
   templateUrl: 'app.html',
-  providers:[HttpClient,HttpService,Utils]
+  // providers:[HttpClient,HttpService,Utils]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -61,6 +62,21 @@ export class MyApp {
   //soccer live score page
   goToLiveScores(){
     this.nav.push(LiveScorePage);
+  }
+  goToSoccer(){
+
+  }
+  goToNHL(){
+
+  }
+  goToNFL(){
+
+  }
+  goToNBA(){
+
+  }
+  goToESports(){
+    this.nav.push(ESportsPage);
   }
 
 

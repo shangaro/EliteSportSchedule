@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { HttpService } from '../../app/shared/shared';
+import * as $ from 'jquery';
 
 /**
  * Generated class for the LiveScorePage page.
@@ -43,5 +44,6 @@ export class LiveScorePage {
    console.log("x array ", x);
     return parseInt(x[0]) >= parseInt(x[1]) ? "primary":"ridinghood";
   }
+  
 
 }

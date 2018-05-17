@@ -19,8 +19,8 @@ import _ from 'lodash';
   templateUrl: 'teams.html',
 })
 export class TeamsPage {
-  tournament:any;
-  teams:any;
+  public tournament:any;
+  public teams:any;
   allTeamDivisions:any;
   queryText:string;
 
@@ -39,16 +39,23 @@ export class TeamsPage {
     });
     loader.present().then(()=>{
        //subscribing the observable
-    this.httpService.getTournamentsData(selectedTournament.id).subscribe(data=>{
-      this.teams=data.teams;
-      console.log('ionViewDidLoad TeamsPage',this.allTeamDivisions);
-      this.allTeamDivisions=chain(this.teams).groupBy('division')
-      .toPairs().map(item=>zipObject(['divisionName','divisionTeams'],item))
-      .value();
-      loader.dismiss();
-      this.teams=this.allTeamDivisions;
-      console.log('division teams', this.teams);
-    });
+    // this.httpService.getTournamentsData(selectedTournament.id).subscribe(data=>{
+    //   this.teams=data.teams;
+    //   console.log('ionViewDidLoad TeamsPage',this.allTeamDivisions);
+    //   this.allTeamDivisions=chain(this.teams).groupBy('division')
+    //   .toPairs().map(item=>zipObject(['divisionName','divisionTeams'],item))
+    //   .value();
+    //   loader.dismiss();
+    //   this.teams=this.allTeamDivisions;
+    //   console.log('division teams', this.teams);
+    // });
+
+      this.httpService.getTeamsFromTourney(this.tournament.id).then(data=>{
+        this.teams=data;
+        loader.dismiss();
+        console.log("teams data",data);
+      });
+     
     });
 
   }
