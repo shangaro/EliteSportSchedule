@@ -23,6 +23,8 @@ import { ESportsPage } from '../pages/e-sports/e-sports';
 import { VideoGamePage } from '../pages/video-game/video-game';
 import { SeriesPage } from '../pages/series/series';
 import { TourneyPage } from '../pages/tourney/tourney';
+import { PlayersPage } from '../pages/players/players';
+import { MatchesPage } from '../pages/matches/matches';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { TourneyPage } from '../pages/tourney/tourney';
     ESportsPage,
     VideoGamePage,
     SeriesPage,
-    TourneyPage
+    TourneyPage,
+    MatchesPage,
+    PlayersPage
     
 
 
@@ -70,7 +74,10 @@ import { TourneyPage } from '../pages/tourney/tourney';
     ESportsPage,
     VideoGamePage,
     SeriesPage,
-    TourneyPage
+    TourneyPage,
+    MatchesPage,
+    PlayersPage
+    
     
 
 
@@ -89,4 +96,5 @@ import { TourneyPage } from '../pages/tourney/tourney';
 
   ]
 })
-export class AppModule {}
+export class AppModule {
+}

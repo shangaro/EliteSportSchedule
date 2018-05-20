@@ -23,7 +23,6 @@ export class TeamsPage {
   public teams:any;
   allTeamDivisions:any;
   queryText:string;
-
   constructor(public navCtrl: NavController, private navParams: NavParams,private httpService:HttpService,private loadingCtrl:LoadingController) {
     this.teams=[];
     this.tournament=this.navParams.data;
@@ -52,6 +51,7 @@ export class TeamsPage {
 
       this.httpService.getTeamsFromTourney(this.tournament.id).then(data=>{
         this.teams=data;
+
         loader.dismiss();
         console.log("teams data",data);
       });

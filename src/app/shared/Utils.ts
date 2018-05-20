@@ -1,6 +1,7 @@
 import {ToastController} from 'ionic-angular';
 import { Injectable } from '@angular/core';
 
+
 @Injectable()
 export class Utils{
 
@@ -16,6 +17,7 @@ export class Utils{
    });
    toast.present();
  }
+
 
 
 }

@@ -19,8 +19,10 @@
 </ion-header>
 
 <ion-tabs color="dark">
-    <ion-tab  [root]="teamDetailsTab" [rootParams]="team" tabTitle="Team" tabIcon="basketball"></ion-tab>
-    <ion-tab [root]="standingsTab" tabTitle="Standings" tabIcon="podium"></ion-tab>
+    <!-- <ion-tab  [root]="teamDetailsTab" [rootParams]="team" tabTitle="Team" tabIcon="basketball"></ion-tab>
+    <ion-tab [root]="standingsTab" tabTitle="Standings" tabIcon="podium"></ion-tab> -->
+    <ion-tab [root]="esportsTeamDetailsTab" [rootParams]="team" tabTitle="Team" tabIcon="basketball"></ion-tab>
+    <ion-tab [root]="playersTab" tabTitle="Players" [rootParams]="team" tabIcon="people"></ion-tab>
     <!-- <ion-tab [root]="roosterTab" tabTitle="Rooster" tabIcon="clipboard"></ion-tab> -->
 
 

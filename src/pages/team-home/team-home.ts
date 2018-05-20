@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { TeamDetailsPage } from '../team-details/team-details';
-import { StandingsPage } from '../standings/standings';
 import { RootNode } from 'ionic-angular/components/split-pane/split-pane';
 import { HomePage } from '../home/home';
+import { PlayersPage } from '../players/players';
 
 /**
  * Generated class for the TeamHomePage page.
@@ -19,12 +18,12 @@ import { HomePage } from '../home/home';
 })
 export class TeamHomePage {
   team:any;
-  teamDetailsTab:any;
-  standingsTab:any;
+  esportsTeamDetailsTab:any;
+  playersTab:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.teamDetailsTab=TeamDetailsPage;
-    this.standingsTab=StandingsPage;
+
+    this.playersTab=PlayersPage;
     this.team=this.navParams.data;
     console.log('**nav Params for TeamHomePage', this.navParams);
 

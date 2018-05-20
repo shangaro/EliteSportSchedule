@@ -36,7 +36,7 @@
   </ion-item-group> -->
   <ion-list [virtualScroll]="teams" [approxItemHeight]="'132px'">
     <ion-list-header>TEAMS</ion-list-header>
-    <button ion-item *virtualItem="let team">
+    <button ion-item *virtualItem="let team" (click)="goToTeamHome($event,team)">
       <ion-thumbnail item-start>
         <img width="80" height="80" [src]="team.image_url">
       </ion-thumbnail>

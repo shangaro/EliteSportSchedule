@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { HttpService } from '../../app/shared/shared';
 import { TeamsPage } from '../teams/teams';
+import { MatchesPage } from '../matches/matches';
 
 /**
  * Generated class for the TourneyPage page.
@@ -43,7 +44,7 @@ export class TourneyPage {
   }
 
   goToMatches($event,tournament){
-    this.navCtrl.push(TeamsPage,tournament);
+    this.navCtrl.push(MatchesPage,tournament);
   }
 
 }

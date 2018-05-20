@@ -75,14 +75,7 @@ export class HttpService{
 
         });
     }
-    // esports
-    getMatchesFromTourney(tourneyId:number):Promise<any>{
-        return new Promise(resolve =>{
-            this.http.get(this.eSportsBaseUrl + '/tournaments'+'/'+tourneyId +'/'+'/matches' +'?token='+APIkey.eSportsApiKey)
-                .subscribe(res =>resolve(res));
-                
-        });
-    }
+   
 
     //esports
     getTeamsFromTourney(tourneyId:number):Promise<any>{
@@ -92,4 +85,24 @@ export class HttpService{
                 
         });
     }
+
+     // esports
+     getMatchesFromTourney(tourneyId:number):Promise<any>{
+        return new Promise(resolve =>{
+            this.http.get(this.eSportsBaseUrl + '/tournaments'+'/'+tourneyId +'/'+'/matches' +'?token='+APIkey.eSportsApiKey)
+                .subscribe(res =>resolve(res));
+                
+        });
+    }
+    //esports
+    getMatchesFromTeam(teamId:number):Promise<any>{
+        return new Promise(resolve =>{
+            this.http.get(this.eSportsBaseUrl + '/teams'+'/'+teamId +'/'+'/matches' +'?token='+APIkey.eSportsApiKey)
+                .subscribe(res =>resolve(res));
+                
+        });
+    }
+
+    
+    
 }
