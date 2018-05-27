@@ -16,13 +16,11 @@
 <ion-content padding>
   <ion-list [virtualScroll]="games" [approxItemHeight]="'132px'">
   <ion-list-header>Matches</ion-list-header>
-    <ion-item *virtualItem="let game">
-      <!-- <ion-row>
-          <ion-col text-left><p>{{game.time | date: 'M/d/yy'}}</p></ion-col>
-          <ion-col text-right><p>{{game.time | date:'shortTime'}}</p></ion-col>
-      </ion-row> -->
+    <ion-item *virtualItem="let game" (click)="goToTeamHomePage($event,game)">
+     
       <ion-thumbnail item-left> <img [src]="game.teamImageUrl" width="20" height="20"></ion-thumbnail>
       <h4 text-center>{{game.teamName}}</h4>
+     
       <h4 text-center><ion-badge>vs</ion-badge></h4>
       <ion-thumbnail item-right> <img [src]="game.opponentImageUrl" width="20" height="20"></ion-thumbnail>
       <h4 text-center>{{game.opponentName}}</h4>

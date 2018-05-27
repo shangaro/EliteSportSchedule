@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { HttpService } from '../../app/shared/shared';
 import _ from 'lodash';
+import { TeamHomePage } from '../team-home/team-home';
 
 /**
  * Generated class for the MatchesPage page.
@@ -41,11 +42,15 @@ export class MatchesPage {
           return{
             teamName:m.opponents[0].opponent.name,
             teamImageUrl:m.opponents[0].opponent.image_url,
+            teamId:m.opponents[0].opponent.id,
             teamScore:m.results[0].score,
             opponentName:opponentName,
             opponentImageUrl:m.opponents[1].opponent.image_url,
+            opponentId:m.opponents[1].opponent.id,
             opponentScore:m.results[1].score,
-            time:Date.parse(m.begin_at)
+            time:Date.parse(m.begin_at),
+            status:m.status,
+            tournamentId:m.tournament_id
 
           }
         }).value();
@@ -54,6 +59,9 @@ export class MatchesPage {
       }).catch(error => error)
       
     });
+  }
+  goToTeamHomePage($event,game){
+    this.navCtrl.push(TeamHomePage,game);
   }
 
 

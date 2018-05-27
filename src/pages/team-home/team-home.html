@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>{{team.name}}</ion-title>
+    <ion-title>TeamHome</ion-title>
     <ion-buttons end>
       <button ion-button (click)="goHome()">
         <ion-icon name="home"></ion-icon>
@@ -19,10 +19,11 @@
 </ion-header>
 
 <ion-tabs color="dark">
-    <!-- <ion-tab  [root]="teamDetailsTab" [rootParams]="team" tabTitle="Team" tabIcon="basketball"></ion-tab>
-    <ion-tab [root]="standingsTab" tabTitle="Standings" tabIcon="podium"></ion-tab> -->
-    <ion-tab [root]="esportsTeamDetailsTab" [rootParams]="team" tabTitle="Team" tabIcon="basketball"></ion-tab>
-    <ion-tab [root]="playersTab" tabTitle="Players" [rootParams]="team" tabIcon="people"></ion-tab>
+    <!-- <ion-tab  [root]="teamDetailsTab" [rootParams]="game" tabTitle="Scores" tabIcon="basketball"></ion-tab> -->
+    <!-- <ion-tab [root]="standingsTab" tabTitle="Standings" tabIcon="podium"></ion-tab> --> -->
+    <!-- <ion-tab [root]="" [rootParams]="team" tabTitle="Team" tabIcon="basketball"></ion-tab> -->
+    <ion-tab [root]="scoreBoardTab" tabTitle="ScoreBoard" [rootParams]="game" tabIcon="game-controller-a-outline"></ion-tab>
+    <ion-tab [root]="playersTab" tabTitle="Players" [rootParams]="game" tabIcon="people"></ion-tab>
     <!-- <ion-tab [root]="roosterTab" tabTitle="Rooster" tabIcon="clipboard"></ion-tab> -->
 
 

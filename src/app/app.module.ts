@@ -25,6 +25,7 @@ import { SeriesPage } from '../pages/series/series';
 import { TourneyPage } from '../pages/tourney/tourney';
 import { PlayersPage } from '../pages/players/players';
 import { MatchesPage } from '../pages/matches/matches';
+import { ScoreBoardPage } from '../pages/score-board/score-board';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MatchesPage } from '../pages/matches/matches';
     SeriesPage,
     TourneyPage,
     MatchesPage,
-    PlayersPage
+    PlayersPage,
+    ScoreBoardPage
     
 
 
@@ -76,7 +78,8 @@ import { MatchesPage } from '../pages/matches/matches';
     SeriesPage,
     TourneyPage,
     MatchesPage,
-    PlayersPage
+    PlayersPage,
+    ScoreBoardPage
     
     
 

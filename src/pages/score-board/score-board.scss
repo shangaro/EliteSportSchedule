@@ -1,0 +1,14 @@
+page-score-board {
+
+}
+
+
+$border-style: thin solid rgb(29, 79, 173);
+
+.top-bottom-border{
+  border-top: $border-style;
+  border-bottom : $border-style;
+}
+.divider-col{
+  border-right: $border-style;
+}
